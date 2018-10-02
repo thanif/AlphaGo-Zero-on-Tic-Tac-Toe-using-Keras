@@ -3,13 +3,21 @@ Mastering Tic Tac Toe Using Self Play and Reinforcement Learning (3X3 Board)
 
 # Node Class
 Node Class contains the following attributes
+
 n is the number of times an action has been taken
+
 w is the total value of the next state
+
 q is the mean value of the next state
+
 p is the prior probability of selecting action a 
+
 state contains the current state of the game
+
 actions contain the possible actions from current state
+
 p contains the move probabilities
+
 v is the value of state (for the current player)
 
 # References
