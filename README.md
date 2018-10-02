@@ -9,3 +9,5 @@ https://medium.com/applied-data-science/how-to-build-your-own-alphazero-ai-using
 https://medium.com/applied-data-science/alphago-zero-explained-in-one-diagram-365f5abf67e0
 
 http://tim.hibal.org/blog/alpha-zero-how-and-why-it-works/
+
+https://applied-data.science/static/main/res/alpha_go_zero_cheat_sheet.png
