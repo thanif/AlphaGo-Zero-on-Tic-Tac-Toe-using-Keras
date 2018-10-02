@@ -20,6 +20,12 @@ p contains the move probabilities
 
 v is the value of state (for the current player)
 
+# Actions Function
+It returns the actions possible from current state in the form of indices
+
+# Children Function
+It returns the updated node with child array containing possible actions in the form of states and parent containing the current state
+
 # References
 https://medium.com/applied-data-science/how-to-build-your-own-alphazero-ai-using-python-and-keras-7f664945c188
 
