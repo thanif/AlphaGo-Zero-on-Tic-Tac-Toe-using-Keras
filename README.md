@@ -1,4 +1,4 @@
-# Alpha-Go-Zero
+# Alpha-Go-Zero-using-Keras
 Mastering Tic Tac Toe Using Self Play and Reinforcement Learning (3X3 Board)
 
 # Node Class
