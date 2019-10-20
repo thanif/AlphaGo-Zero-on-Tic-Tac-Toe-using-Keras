@@ -1,12 +1,12 @@
 import os
-os.environ["CUDA_VISIBLE_DEVICES"]="1"
+os.environ["CUDA_VISIBLE_DEVICES"]="0"
 import time
 import math
 import numpy as np
 import keras
 import tensorflow as tf
 from keras.models import Sequential
-from keras.layers import Dense, Activation, Conv2D, BatchNormalization, LeakyReLU, Flatten, merge, Input, ELU
+from keras.layers import Dense, Activation, Conv2D, BatchNormalization, LeakyReLU, Flatten, concatenate, Input, ELU
 from keras.models import load_model, Model
 from keras.optimizers import SGD
 from keras import regularizers
@@ -582,7 +582,7 @@ def residual_layer(_in):
 
     	bn2 = BatchNormalization()(conv2)
     	
-    	m1 = merge([_in, bn2], mode='sum')
+    	m1 = concatenate([_in, bn2])
     	
     	lr2 = ELU()(m1)
     	
@@ -625,6 +625,126 @@ def policy_head(_in):
 	d1 = Dense(9, activation='linear', kernel_regularizer=regularizers.l2(0.0001))(f1)
 	
 	return d1
+
+def model_z():
+    inputs = Input(shape=(1, 10, 1))
+    
+    conv1 = conv_layer(inputs)
+    
+    r1 = residual_layer(conv1)
+    r2 = residual_layer(r1)
+    r3 = residual_layer(r2)
+    r4 = residual_layer(r3)
+    r5 = residual_layer(r4)
+    r6 = residual_layer(r5)
+    r7 = residual_layer(r6)
+    r8 = residual_layer(r7)
+    r9 = residual_layer(r8)
+    r10 = residual_layer(r9)
+
+    r11 = residual_layer(r10)
+    r12 = residual_layer(r11)
+    r13 = residual_layer(r12)
+    r14 = residual_layer(r13)
+    r15 = residual_layer(r14)
+    r16 = residual_layer(r15)
+    r17 = residual_layer(r16)
+    r18 = residual_layer(r17)
+    r19 = residual_layer(r18)
+    r20 = residual_layer(r19)
+
+    r21 = residual_layer(r20)
+    r22 = residual_layer(r21)
+    r23 = residual_layer(r22)
+    r24 = residual_layer(r23)
+    r25 = residual_layer(r24)
+    r26 = residual_layer(r25)
+    r27 = residual_layer(r26)
+    r28 = residual_layer(r27)
+    r29 = residual_layer(r28)
+    r30 = residual_layer(r29)
+
+
+    r31 = residual_layer(r30)
+    r32 = residual_layer(r31)
+    r33 = residual_layer(r32)
+    r34 = residual_layer(r33)
+    r35 = residual_layer(r34)
+    r36 = residual_layer(r35)
+    r37 = residual_layer(r36)
+    r38 = residual_layer(r37)
+    r39 = residual_layer(r38)
+    r40 = residual_layer(r39)
+
+    output = value_head(r40)
+
+
+
+    model = Model(inputs=[inputs], outputs=[output])
+
+    model.compile(loss='mean_squared_error', optimizer=SGD(lr=0.1, momentum = 0.9))
+    
+    return model
+
+def model_pi():
+    inputs = Input(shape=(1, 10, 1))
+    
+    conv1 = conv_layer(inputs)
+    
+    r1 = residual_layer(conv1)
+    r2 = residual_layer(r1)
+    r3 = residual_layer(r2)
+    r4 = residual_layer(r3)
+    r5 = residual_layer(r4)
+    r6 = residual_layer(r5)
+    r7 = residual_layer(r6)
+    r8 = residual_layer(r7)
+    r9 = residual_layer(r8)
+    r10 = residual_layer(r9)
+
+    r11 = residual_layer(r10)
+    r12 = residual_layer(r11)
+    r13 = residual_layer(r12)
+    r14 = residual_layer(r13)
+    r15 = residual_layer(r14)
+    r16 = residual_layer(r15)
+    r17 = residual_layer(r16)
+    r18 = residual_layer(r17)
+    r19 = residual_layer(r18)
+    r20 = residual_layer(r19)
+
+    r21 = residual_layer(r20)
+    r22 = residual_layer(r21)
+    r23 = residual_layer(r22)
+    r24 = residual_layer(r23)
+    r25 = residual_layer(r24)
+    r26 = residual_layer(r25)
+    r27 = residual_layer(r26)
+    r28 = residual_layer(r27)
+    r29 = residual_layer(r28)
+    r30 = residual_layer(r29)
+
+
+    r31 = residual_layer(r30)
+    r32 = residual_layer(r31)
+    r33 = residual_layer(r32)
+    r34 = residual_layer(r33)
+    r35 = residual_layer(r34)
+    r36 = residual_layer(r35)
+    r37 = residual_layer(r36)
+    r38 = residual_layer(r37)
+    r39 = residual_layer(r38)
+    r40 = residual_layer(r39)
+
+    output = policy_head(r40)
+
+
+
+    model = Model(inputs=[inputs], outputs=[output])
+
+    model.compile(loss=custom_loss_function, optimizer=SGD(lr=0.1, momentum = 0.9))
+    
+    return model
 
 
 
@@ -908,12 +1028,19 @@ def episode(dim,turn,pi_model,z_model):
 
 def main():
 
+	if  os.path.isfile("pi_model_ann.h5"):
 
+		pi_model = load_model('pi_model_ann.h5', custom_objects={'custom_loss_function': custom_loss_function})
 
-	pi_model = load_model('pi_model_ann.h5', custom_objects={'custom_loss_function': custom_loss_function})
+	else:
+    		pi_model = model_pi()
+	
 
+	if  os.path.isfile("z_model_ann.h5"):
 
-	z_model  = load_model('z_model_ann.h5', custom_objects={'custom_loss_function': custom_loss_function})
+		z_model  = load_model('z_model_ann.h5', custom_objects={'custom_loss_function': custom_loss_function})
+	else:
+    		z_model = model_z()
 	
 	ch = raw_input("Enter 0 if you want to take the first turn ")
 	
