@@ -1,4 +1,4 @@
-# Alpha-Go-Zero-on-Tic-Tac-Toe-using-Keras
+# Alpha-Zero-on-Tic-Tac-Toe-using-Keras
 Mastering Tic Tac Toe Using Self Play and Reinforcement Learning (3X3 Board)
 
 # MOTIVATION
