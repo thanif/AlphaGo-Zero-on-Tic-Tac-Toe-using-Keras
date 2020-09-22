@@ -347,7 +347,7 @@ def simulation(n,player,opponent,epsilon,current_move_p,pi_model,z_model):
 			
             		
                 
-                	model = pi_model
+			model = pi_model
             		
                 		
 			x_test = np.zeros((1,1,10))
@@ -563,9 +563,9 @@ def conv_layer(_in):
 
 	conv1 = Conv2D(256, (3, 3), activation='linear', kernel_regularizer = regularizers.l2(0.0001),padding = 'same')(_in)
 
-    	bn1 = BatchNormalization()(conv1)
+	bn1 = BatchNormalization()(conv1)
     	
-    	lr1 = ELU()(bn1)
+	lr1 = ELU()(bn1)
 
 	return lr1
 	
@@ -883,13 +883,13 @@ def episode(dim,turn,pi_model,z_model):
 		
 	
 	
-	print "Start State  \n"
+	print ("Start State  \n")
 			
 			
 			
 	maze = print_maze(n)
 			
-	print maze
+	print (maze)
 	
 	
 	while conclusion(n, 1, 2, 0) == -1:
@@ -900,7 +900,7 @@ def episode(dim,turn,pi_model,z_model):
 		
 			
 		
-			print "Monte Carlo 1's Move"
+			print ("Monte Carlo 1's Move")
 			
 			
 			a = np.zeros(len(n.state)+1)
@@ -929,13 +929,13 @@ def episode(dim,turn,pi_model,z_model):
 			
 				
 			
-			print "After Monte Carlo 1's Move "
+			print ("After Monte Carlo 1's Move ")
 			
 			#print "check : ", current_move_p
 			
 			maze = print_maze(n)
 			
-			print maze
+			print (maze)
 		
 				
 		
@@ -946,7 +946,7 @@ def episode(dim,turn,pi_model,z_model):
 		
 			
 		
-			print "Player's Move"
+			print ("Player's Move")
 			
 
 			ind = raw_input("Enter the index at which you want to place your move ")
@@ -963,20 +963,20 @@ def episode(dim,turn,pi_model,z_model):
 				
 				n.state[int(ind)] = 2
 			
-			print "After Player's Move "
+			print ("After Player's Move ")
 			
 			#print "check : ", current_move_p
 			
 			maze = print_maze(n)
 			
-			print maze
+			print (maze)
 		
 
 			p=1
 	
 	if conclusion(n, 1, 2, 0) == 1:
 	
-		print "Monte Carlo 1 Wins "
+		print ("Monte Carlo 1 Wins ")
 		
 		for i in range(len(states)):
 		
@@ -989,7 +989,7 @@ def episode(dim,turn,pi_model,z_model):
 		
 	elif conclusion(n, 1, 2, 0) == 2:
 	
-		print "Player Wins"
+		print ("Player Wins")
 		
 		for i in range(len(states)):
 			
@@ -1002,7 +1002,7 @@ def episode(dim,turn,pi_model,z_model):
 
 	else:
 	
-		print "Game Drawn "	
+		print ("Game Drawn ")	
 		
 		for i in range(len(states)):
 		
@@ -1058,7 +1058,7 @@ def main():
 
 	for ep in range(2):
 	
-		print "Episode : ",str(ep+1)
+		print ("Episode : ",str(ep+1))
 	
 		states,_,vals,p = episode(3,turn,pi_model,z_model)
 
