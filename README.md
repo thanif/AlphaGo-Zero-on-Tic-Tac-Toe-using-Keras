@@ -1,6 +1,8 @@
 # AlphaGo-Zero-on-Tic-Tac-Toe-using-Keras  
 Mastering Tic Tac Toe Using Self Play and Reinforcement Learning (3X3 Board)
 
+![AlphaGo Zero on Tic Tac Toe Demo](Demo/demo.gif)
+
 # MOTIVATION
 
 In March 2016, Deepmind’s AlphaGo beat
