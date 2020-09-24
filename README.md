@@ -1,6 +1,8 @@
 # AlphaGo-Zero-on-Tic-Tac-Toe-using-Keras  
 Mastering Tic Tac Toe Using Self Play and Reinforcement Learning (3X3 Board)
 
+Article: https://medium.com/analytics-vidhya/thank-you-sir-d02dabee2ab6
+
 ![AlphaGo Zero on Tic Tac Toe Demo](Demo/demo.gif)
 
 # MOTIVATION
